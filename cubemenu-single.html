@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js/jquery-min.js"></script>
+
+<style type="text/css">
+    /* basic menu styles */
+    .block-menu {
+      display: block;
+    }
+
+    .block-menu li {
+      display: inline-block;
+    }
+
+   #threed {
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      font-family: 'Passion One',Arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      font-smoothing: antialiased;
+      text-transform: uppercase;
+      overflow: visible;
+      line-height: 20px;
+      font-size: 24px;
+      padding: 15px 10px;
+    }
+
+    /* animation domination */
+    .three-d {
+      -webkit-perspective: 200px;
+      -moz-perspective: 200px;
+      perspective: 200px;
+      -webkit-transition: all .07s linear;
+      -moz-transition: all .07s linear;
+      transition: all .07s linear;
+      position: relative;
+      width:70px;
+      text-align: center;
+    }
+
+      .three-d:not(.active):hover {
+        cursor: pointer;
+      }
+
+    .three-d-box {
+      -webkit-transition: all .3s ease-out;
+      -moz-transition: all .3s ease-out;
+      -ms-transition: all .3s ease-out;
+      -o-transition: all .3s ease-out;
+      transition: all .3s ease-out;
+      -webkit-transform: translatez(-25px);
+      -moz-transform: translatez(-25px);
+      -o-transform: translatez(-25px);
+      transform: translatez(-25px);
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .front {
+      -webkit-transform: rotatex(0deg) translatez(25px);
+      -moz-transform: rotatex(0deg) translatez(25px);
+      -o-transform: rotatex(0deg) translatez(25px);
+      transform: rotatex(0deg) translatez(25px);
+    }
+
+    .bottom {
+      -webkit-transform: rotatex(-90deg) translatez(25px);
+      -moz-transform: rotatex(-90deg) translatez(25px);
+      -o-transform: rotatex(-90deg) translatez(25px);
+      transform: rotatex(-90deg) translatez(25px);
+      color: #FFE7C4;
+    }
+
+    .back {
+      -webkit-transform: rotatex(-180deg) translatez(25px);
+      -moz-transform: rotatex(-180deg) translatez(25px);
+      -o-transform: rotatex(-180deg) translatez(25px);
+      transform: rotatex(-180deg) translatez(25px);
+      color: #FFE7C4;
+    }
+
+    .top {
+      -webkit-transform: rotatex(-270deg) translatez(25px);
+      -moz-transform: rotatex(-270deg) translatez(25px);
+      -o-transform: rotatex(-270deg) translatez(25px);
+      transform: rotatex(-270deg) translatez(25px);
+      color: #FFE7C4;
+    }        
+
+    .left {
+      -webkit-transform: rotatey(-90deg) translatez(25px);
+      -moz-transform: rotatey(-90deg) translatez(25px);
+      -o-transform: rotatey(-90deg) translatez(25px);
+      transform: rotatey(-90deg) translatez(25px);
+      color: #FFE7C4;
+    }  
+
+    .right {
+      -webkit-transform: rotatey(90deg) translatez(65px);
+      -moz-transform: rotatey(90deg) translatez(65px);
+      -o-transform: rotatey(90deg) translatez(65px);
+      transform: rotatey(90deg) translatez(65px);
+      color: #FFE7C4;
+    }        
+
+
+    .front, .bottom, .back, .top{
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      padding: 15px 10px;
+      color: white;
+      pointer-events: none;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+      .left{
+      display: block;
+      width: 55%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      padding: 15px 10px;
+      color: white;
+      pointer-events: none;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    } 
+
+    .right {
+      display: block;
+      width: 55%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      padding: 15px 10px;
+      color: white;
+      pointer-events: none;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    } 
+
+
+  </style>
+
+  <script>
+
+    var menu = document.getElementById("threedbox");
+    var rotatexval=0;
+    var rotateyval=0;
+    document.onkeydown =  function(e) {
+          switch (e.which) {
+              // key code for up arrow
+              case 38:
+                  rotatexval=rotatexval-90;        
+                  $(threedbox).css({
+                      "MozTransform":"translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "webkitTransform": "translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "OTransform": "translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "transform": "translateZ(-25px) rotateX("+rotatexval+"deg)"                                        
+                  }); 
+                  rotateyval=0;          
+                  //alert("up arrow key pressed!");
+                  break;
+              
+              // key code for down arrow
+              case 40:
+                  rotatexval=rotatexval+90;
+                  $(threedbox).css({
+                      "MozTransform":"translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "webkitTransform": "translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "OTransform": "translateZ(-25px) rotateX("+rotatexval+"deg)",
+                      "transform": "translateZ(-25px) rotateX("+rotatexval+"deg)"                                        
+                  });
+                  rotateyval=0;                  
+                  //alert("down arrow key pressed!");
+                  break;
+
+              // key code for left arrow
+              case 37:
+                  rotateyval=rotateyval+90;              
+                  $(threedbox).css({
+                      "MozTransform":"translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "webkitTransform": "translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "OTransform": "translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "transform": "translateZ(-25px) rotateY("+rotateyval+"deg)"                                        
+                  });
+                  rotatexval=0;                                 
+                  //alert("left arrow key pressed!");
+                  break;
+              
+              // key code for right arrow
+              case 39:
+                  rotateyval=rotateyval-90;                 
+                  $(threedbox).css({
+                      "MozTransform":"translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "webkitTransform": "translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "OTransform": "translateZ(-25px) rotateY("+rotateyval+"deg)",
+                      "transform": "translateZ(-25px) rotateY("+rotateyval+"deg)"                                        
+                  }); 
+                  rotatexval=0;                    
+                  break;
+            }
+            if((rotateyval%360+360)%360==0) document.body.style.backgroundColor = "#ffffff";//front            
+            if((rotatexval%360+360)%360==0) document.body.style.backgroundColor = "#ffffff";//front
+            if((rotateyval%360+360)%360==90) document.body.style.backgroundColor = "#fff827";//left
+            if((rotateyval%360+360)%360==270) document.body.style.backgroundColor = "#9fdb13";//right
+            if((rotatexval%360+360)%360==270) document.body.style.backgroundColor = "#AA0000";//top 
+            if((rotatexval%360+360)%360==90) document.body.style.backgroundColor = "#3be2bd";//bottom 
+            if((rotatexval%360+360)%360==180) document.body.style.backgroundColor = "#6699ff";//bottom                
+            if((rotateyval%360+360)%360==180) document.body.style.backgroundColor = "#6699ff";//bottom  
+        };
+
+  </script>
+  
+</head>
+<body>
+  <ul class="block-menu">
+    <li><div id="threed" class="three-d">
+      a
+      <span aria-hidden="true" class="three-d-box" id="threedbox">
+        <span class="front"> Home </a></span> 
+        <span class="bottom">Team</span>
+        <span class="back">Back</span> 
+        <span class="top">Menu</span>                 
+        <span class="left">AB</span> 
+        <span class="right">CD</span>                
+      </span>
+    </div></li>
+  </ul>
+</body>
+</html>
